@@ -9,7 +9,6 @@ main()
  char str[100],key[100];
  printf("Enter a string\n");
  gets(str);
- //converting entered string to Capital letters
  for(i=0,j=0;i<strlen(str);i++)
  {
   if(str[i]!=' ')
@@ -20,7 +19,6 @@ main()
  }
  str[j]='\0';
  printf("Entered String is %s\n",str);
- //Storing string in terms of ascii and to restore spaces I used -20
  size=strlen(str);
  for(i=0;i<size;i++)
  {
@@ -28,10 +26,8 @@ main()
   numstr[i]=str[i]-'A';
  }
  lennumstr=i;
- //Key processing
  printf("Enter the key (Non repeated elements if possible)\n");
  gets(key);
- //converting entered key to Capital letters
  for(i=0,j=0;i<strlen(key);i++)
  {
   if(key[i]!=' ')
@@ -57,7 +53,7 @@ main()
   }
   else
   {
-    if(k!=9 && k!=flag)//Considering I=J and taking I in place of J except when J is there in key ignoring I
+    if(k!=9 && k!=flag)
     {
             numkey[i]=k; 
       }
@@ -72,7 +68,6 @@ main()
      printf("%c",numkey[i]+'A');  
  }
  printf("\n");
- //Arranging the key in 5x5 grid
  k=0;
  for(i=0;i<5;i++)
  {
@@ -91,7 +86,6 @@ main()
   }
   printf("\n");
  }   
-   //Message Processing 
    for(i=0;i<lennumstr;i+=2)
    {
       if(numstr[i]==numstr[i+1])
@@ -128,8 +122,6 @@ main()
       }     
      }
     }
-    //Only change between Ecryption to decryption is changing + to -
-    //If negative add 5 to that row or column
     if(row1==row2)
     {
      col1=(col1-1)%5;
@@ -169,8 +161,8 @@ main()
    printf("\nCipher Text is\n");
    for(i=0;i<lennumstr;i++)
    {
-    if((numcipher[i]+'A')!='X')//Should remove extra 'X' which were created during Encryption
-      printf("%c",numcipher[i]+'A'); 
+    if((numcipher[i]+'A')!='X')
+         printf("%c",numcipher[i]+'A'); 
    }
    printf("\n"); 
 }
