@@ -1,43 +1,43 @@
-#include <stdio.h>
-#include <string.h>
-
-int en[100][100], m[100][100], msg[100];
-char ms[100];
-
-void getkeymatrix() {
-    printf("Enter the message: ");
-    scanf("%s", ms);
-
-    for (int i = 0; i < strlen(ms); i++) {
-        msg[i] = ms[i] - 65;
-    }
-
-    printf("Enter the key matrix:\n");
-    for (int i = 0; i < strlen(ms); i++) {
-        for (int j = 0; j < strlen(ms); j++) {
-            scanf("%d", &m[i][j]);
-        }
-    }
+#include<stdio.h>
+#include<string.h>
+int main() 
+{
+unsigned int a[3][3] = { { 6, 24, 1 }, { 13, 16, 10 },{20,17,15}};
+unsigned int b[3][3] = { { 8, 5, 10 }, { 21, 8, 21 }, { 21,12,8}};
+int i, j;
+unsigned int c[20], d[20];
+char msg[20];
+int determinant = 0, t = 0;
+printf("Enter plain text: ");
+scanf("%s", msg);
+for (i = 0; i < 3; i++)
+{
+c[i] = msg[i] - 65;
+printf("%d ", c[i]);
 }
-
-void encryption() {
-    int i, j, k;
-    for (i = 0; i < strlen(ms); i++) {
-        en[i][0] = 0;
-        for (k = 0; k < strlen(ms); k++) {
-            en[i][0] += m[i][k] * msg[k];
-        }
-    }
-    
-    printf("Encrypted message: ");
-    for (i = 0; i < strlen(ms); i++) {
-        printf("%c", (en[i][0] % 26) + 65);
-    }
-    printf("\n");
+for (i = 0; i < 3; i++) 
+{
+t = 0;
+for (j = 0; j < 3; j++) 
+{
+t = t + (a[i][j] * c[j]);
 }
-
-int main() {
-    getkeymatrix();
-    encryption();
-    return 0;
+ d[i] = t % 26;
+ }
+printf("\nEncrypted Cipher Text :");
+for (i = 0; i < 3; i++)
+printf(" %c", d[i] + 65);
+for (i = 0; i < 3; i++)
+{
+t = 0;
+for (j = 0; j < 3; j++)
+{
+t = t + (b[i][j] * d[j]);
+ }
+ c[i] = t % 26;
+ }
+ printf("\nDecrypted Cipher Text :");
+ for (i = 0; i < 3; i++)
+ printf(" %c", c[i] + 65);
+ return 0;
 }
